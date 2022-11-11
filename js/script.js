@@ -21,17 +21,16 @@ createApp({
       axios.get(`${this.apiUrl}`)
         .then ( risultato => {
           this.MailList.push(risultato.data.response);
+          if (this.MailList.length === this.numberOfItems) {
+            this.isLoaded = true;
+          }
         });
     },
 
     generateList(number) {
-      this.isLoaded = false;
       for (i = 0; i < number; i++) {
         this.getApi();
-      }
-      console.log(this.MailList);
-      console.log(this.MailList.length);
-      this.isLoaded = true; 
+      }  
     }
 
   },
