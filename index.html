@@ -20,13 +20,22 @@
     <div id="app">
       <h1>Indirizzi e-mail</h1>
 
+
+      <div v-if="isLoaded" class="row">
+        <div class="col">
+          <input class="form-control" type="number" placeholder="Scegli il numero di mail"  v-model.trim="inputItems">
+        </div>
+        <div class="col">
+          <button @click="InputGenerateList()" class="btn btn-info">Cerca</button>
+        </div>
+      </div>
+
       <ol v-if="isLoaded">
         <li v-for="(mail, index) in MailList">
           {{mail}}
         </li>
       </ol>
       <h2 v-else>Loading...</h2>
-
     </div>
 
     <script src="js/script.js"></script>

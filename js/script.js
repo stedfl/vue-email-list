@@ -13,6 +13,7 @@ createApp({
       apiUrl: 'https://flynn.boolean.careers/exercises/api/random/mail',
       MailList: [],
       numberOfItems: 10,
+      inputItems: '',
       isLoaded: false,
     }
   },
@@ -28,9 +29,17 @@ createApp({
     },
 
     generateList(number) {
+      this.MailList = [];
+      this.isLoaded = false;
       for (i = 0; i < number; i++) {
         this.getApi();
       }  
+    },
+
+    InputGenerateList() {
+      this.numberOfItems = this.inputItems;
+      this.inputItems = '';
+      this.generateList(this.numberOfItems);
     }
 
   },
