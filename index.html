@@ -13,8 +13,22 @@
     <link rel="stylesheet" href="css/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3"></script>
-    <script src="js/script.js"></script>
     <title>Vue Email List</title>
   </head>
-  <body></body>
+  <body>
+
+    <div id="app">
+      <h1>Indirizzi e-mail</h1>
+
+      <ol v-if="isLoaded">
+        <li v-for="(mail, index) in MailList">
+          {{mail}}
+        </li>
+      </ol>
+      <h2 v-else>Loading...</h2>
+
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
 </html>
