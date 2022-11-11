@@ -13,6 +13,7 @@ createApp({
       apiUrl: 'https://flynn.boolean.careers/exercises/api/random/mail',
       MailList: [],
       numberOfItems: 10,
+      isLoaded: true
     }
   },
   methods: {
@@ -20,6 +21,7 @@ createApp({
       axios.get(`${this.apiUrl}`)
         .then ( risultato => {
           this.MailList.push(risultato.data.response);
+          console.log(this.MailList);
         })
     },
 
