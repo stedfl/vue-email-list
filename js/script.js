@@ -1,10 +1,3 @@
-// **Descrizione:**
-// Attraverso l’apposita API di Boolean
-// https://flynn.boolean.careers/exercises/api/random/mail
-// generare 10 indirizzi email e stamparli in pagina all’interno di una lista.
-// **Bonus**
-// Creare un loading e far comparire gli indirizzi email solamente quando sono stati TUTTI generati.
-
 const {createApp} = Vue;
 
 createApp({
@@ -13,8 +6,9 @@ createApp({
       apiUrl: 'https://flynn.boolean.careers/exercises/api/random/mail',
       MailList: [],
       numberOfItems: 10,
-      inputItems: '',
+      inputItems: null,
       isLoaded: false,
+      errorMsg: ''
     }
   },
   methods: {
@@ -29,7 +23,6 @@ createApp({
     },
 
     generateList(number) {
-      this.MailList = [];
       this.isLoaded = false;
       for (i = 0; i < number; i++) {
         this.getApi();
@@ -37,9 +30,21 @@ createApp({
     },
 
     InputGenerateList() {
-      this.numberOfItems = this.inputItems;
+      this.errorMsg = '';
+      this.MailList = [];
+      this.inputItems = parseInt(this.inputItems);
+
+      if (isNaN(this.inputItems)) {
+        this.errorMsg = 'Inserire un numero!';
+      
+      } else if (this.inputItems < 1 || this.inputItems > 100) {
+        this.errorMsg = 'Inserire un numero tra 1 e 100!';
+        
+      } else {
+        this.numberOfItems = this.inputItems;
+        this.generateList(this.numberOfItems);
+      }
       this.inputItems = '';
-      this.generateList(this.numberOfItems);
     }
 
   },
